@@ -1,11 +1,9 @@
 # date-tools
-[![Build Status](https://travis-ci.org/joonhocho/graphql-rule.svg?branch=master)](https://travis-ci.org/joonhocho/graphql-rule)
-[![Coverage Status](https://coveralls.io/repos/github/joonhocho/graphql-rule/badge.svg?branch=master)](https://coveralls.io/github/joonhocho/graphql-rule?branch=master)
-[![npm version](https://badge.fury.io/js/graphql-rule.svg)](https://badge.fury.io/js/graphql-rule)
-[![Dependency Status](https://david-dm.org/joonhocho/graphql-rule.svg)](https://david-dm.org/joonhocho/graphql-rule)
+[![Build Status](https://travis-ci.org/beanloop/date-tools.svg?branch=master)](https://travis-ci.org/beanloop/date-tools)
+[![npm version](https://badge.fury.io/js/date-tools.svg)](https://badge.fury.io/js/date-tools)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 
-Functions for comparing and counting with dates. Includes Typescript tyipings.
+Functions for comparing and counting with dates. Includes Typescript typings.
 
 
 ### Install
