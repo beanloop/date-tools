@@ -1,0 +1,25 @@
+{
+  "name": "date-tools",
+  "version": "1.0.0",
+  "description": "Functions for comparing and counting with dates",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tscomp build",
+    "watch": "tscomp watch",
+    "test": "tscomp test",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "url": "https://github.com/beanloop/date-tools",
+    "type": "git"
+  },
+  "author": "Beanloop AB",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^16.0.1",
+    "tscomp": "^0.7.4"
+  },
+  "dependencies": {
+    "rusted": "^1.0.0"
+  }
+}
