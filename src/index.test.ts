@@ -202,7 +202,8 @@ describe('date', () => {
       expect(diffDays(new Date(2000, 1, 1), new Date(2000, 1, 1))).toBe(0)
       expect(diffDays(new Date(2000, 1, 1), new Date(2000, 1, 2))).toBe(1)
       expect(diffDays(new Date(2000, 1, 1), new Date(2000, 1, 10))).toBe(9)
-      expect(diffDays(new Date(2000, 2, 1), new Date(2000, 3, 1))).toBe(30)
+      // Use strings due to daylight saving time in some locales
+      expect(diffDays(new Date('2000-03-01'), new Date('2000-04-01'))).toBe(31)
     })
 
     it('should work in reverse', () => {
@@ -215,7 +216,8 @@ describe('date', () => {
       expect(diffDays(new Date(2000, 1, 1).getTime(), new Date(2000, 1, 1).getTime())).toBe(0)
       expect(diffDays(new Date(2000, 1, 1).getTime(), new Date(2000, 1, 2).getTime())).toBe(1)
       expect(diffDays(new Date(2000, 1, 1).getTime(), new Date(2000, 1, 10).getTime())).toBe(9)
-      expect(diffDays(new Date(2000, 2, 1).getTime(), new Date(2000, 3, 1).getTime())).toBe(30)
+      // Use strings due to daylight saving time in some locales
+      expect(diffDays(new Date('2000-03-01').getTime(), new Date('2000-04-01').getTime())).toBe(31)
       expect(diffDays(new Date(2000, 1, 2).getTime(), new Date(2000, 1, 1).getTime())).toBe(-1)
       expect(diffDays(new Date(2000, 1, 10).getTime(), new Date(2000, 1, 1).getTime())).toBe(-9)
       expect(diffDays(new Date(2000, 3, 1).getTime(), new Date(2000, 2, 1).getTime())).toBe(-31)
