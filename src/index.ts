@@ -12,9 +12,17 @@ export enum Precision {
 
 export type Duration = {}
 export const Duration = Enum({
+  MilliSeconds: 'number',
+  Seconds: 'number',
+  Minutes: 'number',
+  Hours: 'number',
   Days: 'number',
   Months: 'number',
 }) as {
+  MilliSeconds(days: number): Duration,
+  Seconds(days: number): Duration,
+  Minutes(days: number): Duration,
+  Hours(days: number): Duration,
   Days(days: number): Duration,
   Months(months: number): Duration,
 }
@@ -36,6 +44,10 @@ export function clone(date: Date): Date {
 
 export function add(date: Date, duration: Duration): Date {
   return match(duration, {
+    MilliSeconds: ms => new Date(date.getTime() + ms),
+    Seconds: seconds => new Date(clone(date).setSeconds(date.getSeconds() + seconds)),
+    Minutes: minutes => new Date(clone(date).setMinutes(date.getMinutes() + minutes)),
+    Hours: hours => new Date(clone(date).setHours(date.getHours() + hours)),
     Days: days => new Date(clone(date).setDate(date.getDate() + days)),
     Months: months => new Date(clone(date).setMonth(date.getMonth() + months)),
   })
@@ -43,6 +55,10 @@ export function add(date: Date, duration: Duration): Date {
 
 export function subtract(date: Date, duration: Duration): Date {
   return match(duration, {
+    MilliSeconds: ms => new Date(date.getTime() - ms),
+    Seconds: seconds => new Date(clone(date).setSeconds(date.getSeconds() - seconds)),
+    Minutes: minutes => new Date(clone(date).setMinutes(date.getMinutes() - minutes)),
+    Hours: hours => new Date(clone(date).setHours(date.getHours() - hours)),
     Days: days => new Date(clone(date).setDate(date.getDate() - days)),
     Months: months => new Date(clone(date).setMonth(date.getMonth() - months)),
   })

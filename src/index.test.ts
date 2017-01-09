@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import {
   Duration,
   NaturalDifference,
@@ -18,36 +19,40 @@ function makeVisible(enumValue) {
 }
 
 describe('date', () => {
-  describe('addDays', () => {
-    it('shoud add the number of days', () => {
-      expect(new Date(2000, 0, 1).add(Duration.Days(5))).toEqual(new Date(2000, 0, 6))
-      expect(new Date(2008, 1, 28).add(Duration.Days(1))).toEqual(new Date(2008, 1, 29))
-      expect(new Date(2008, 1, 28).add(Duration.Days(3))).toEqual(new Date(2008, 2, 2))
-      expect(new Date(2010, 11, 28).add(Duration.Days(10))).toEqual(new Date(2011, 0, 7))
+  describe('add', () => {
+    describe('days', () => {
+      it('shoud add the number of days', () => {
+        expect(new Date(2000, 0, 1).add(Duration.Days(5))).toEqual(new Date(2000, 0, 6))
+        expect(new Date(2008, 1, 28).add(Duration.Days(1))).toEqual(new Date(2008, 1, 29))
+        expect(new Date(2008, 1, 28).add(Duration.Days(3))).toEqual(new Date(2008, 2, 2))
+        expect(new Date(2010, 11, 28).add(Duration.Days(10))).toEqual(new Date(2011, 0, 7))
+      })
+    })
+
+    describe('months', () => {
+      it('shoud add the number of months', () => {
+        expect(new Date(2000, 0, 1).add(Duration.Months(5))).toEqual(new Date(2000, 5, 1))
+        expect(new Date(2005, 9, 1).add(Duration.Months(5))).toEqual(new Date(2006, 2, 1))
+      })
     })
   })
 
-  describe('addMonths', () => {
-    it('shoud add the number of months', () => {
-      expect(new Date(2000, 0, 1).add(Duration.Months(5))).toEqual(new Date(2000, 5, 1))
-      expect(new Date(2005, 9, 1).add(Duration.Months(5))).toEqual(new Date(2006, 2, 1))
+  describe('subtract', () => {
+    describe('days', () => {
+      it('shoud subtract the number of days', () => {
+        expect(new Date(2000, 0, 6).subtract(Duration.Days(5))).toEqual(new Date(2000, 0, 1))
+        expect(new Date(2008, 1, 29).subtract(Duration.Days(1))).toEqual(new Date(2008, 1, 28))
+        expect(new Date(2008, 2, 1).subtract(Duration.Days(1))).toEqual(new Date(2008, 1, 29))
+        expect(new Date(2008, 2, 2).subtract(Duration.Days(3))).toEqual(new Date(2008, 1, 28))
+        expect(new Date(2011, 0, 7).subtract(Duration.Days(10))).toEqual(new Date(2010, 11, 28))
+      })
     })
-  })
 
-  describe('subtractDays', () => {
-    it('shoud subtract the number of days', () => {
-      expect(new Date(2000, 0, 6).subtract(Duration.Days(5))).toEqual(new Date(2000, 0, 1))
-      expect(new Date(2008, 1, 29).subtract(Duration.Days(1))).toEqual(new Date(2008, 1, 28))
-      expect(new Date(2008, 2, 1).subtract(Duration.Days(1))).toEqual(new Date(2008, 1, 29))
-      expect(new Date(2008, 2, 2).subtract(Duration.Days(3))).toEqual(new Date(2008, 1, 28))
-      expect(new Date(2011, 0, 7).subtract(Duration.Days(10))).toEqual(new Date(2010, 11, 28))
-    })
-  })
-
-  describe('subtractMonths', () => {
-    it('shoud subtract the number of months', () => {
-      expect(new Date(2000, 5, 1).subtract(Duration.Months(5))).toEqual(new Date(2000, 0, 1))
-      expect(new Date(2006, 2, 1).subtract(Duration.Months(5))).toEqual(new Date(2005, 9, 1))
+    describe('months', () => {
+      it('shoud subtract the number of months', () => {
+        expect(new Date(2000, 5, 1).subtract(Duration.Months(5))).toEqual(new Date(2000, 0, 1))
+        expect(new Date(2006, 2, 1).subtract(Duration.Months(5))).toEqual(new Date(2005, 9, 1))
+      })
     })
   })
 
