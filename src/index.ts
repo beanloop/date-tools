@@ -10,7 +10,9 @@ export enum Precision {
   MilliSeconds,
 }
 
-export type Duration = {}
+export type Duration = {
+  toString(): string
+}
 export const Duration = Enum({
   MilliSeconds: 'number',
   Seconds: 'number',
@@ -25,7 +27,31 @@ export const Duration = Enum({
   Hours(days: number): Duration,
   Days(days: number): Duration,
   Months(months: number): Duration,
+
+  fromString(string: string): Duration
 }
+
+impl(Duration, {
+  $fromString(string: string) {
+    const matches = /^Duration\.([A-Za-z]+)\(([0-9]+)\)$/.exec(string)
+    if (!matches || matches.length !== 3) throw Error('Invalid string')
+    const unit = Duration[matches[1]]
+    if (!unit) throw Error('Invalid unit')
+
+    return unit.call(Duration, +matches[2])
+  },
+
+  toString(self) {
+    return match(self, {
+      MilliSeconds: duration => `Duration.MilliSeconds(${duration})`,
+      Seconds: duration => `Duration.Seconds(${duration})`,
+      Minutes: duration => `Duration.Minutes(${duration})`,
+      Hours: duration => `Duration.Hours(${duration})`,
+      Days: duration => `Duration.Days(${duration})`,
+      Months: duration => `Duration.Months(${duration})`,
+    })
+  },
+})
 
 export type NaturalDifference = {}
 export const NaturalDifference = Enum({
