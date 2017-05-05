@@ -17,7 +17,7 @@ export const Duration = Enum({
   MilliSeconds: 'number',
   Seconds: 'number',
   Minutes: 'number',
-  Hours: 'number',
+  Hours: 'number', 
   Days: 'number',
   Months: 'number',
 }) as {
@@ -190,9 +190,15 @@ export function diffMonths(from: Date, to: Date) {
 export function timeBetween(from: Date, to: Date) {
   if (isEqual(from, to)) return Duration.Days(0)
 
-  return from.getDate() === to.getDate()
-    ? Duration.Months(diffMonths(from, to))
-    : Duration.Days(diffDays(from, to))
+  if (isEqual(from, to, {precision: Precision.Months}) && isEqual(from, to, {precision: Precision.Days})) {
+    return Duration.Days(diffDays(from, to))
+  }
+  else if (isEqual(from, to, {precision: Precision.Days})) {
+    return Duration.Months(diffMonths(from, to))
+  }
+  else {
+    return Duration.Days(diffDays(from, to))
+  }
 }
 
 export function naturalDifference(from: Date, to: Date, {precision} = {precision: Precision.Days}) {

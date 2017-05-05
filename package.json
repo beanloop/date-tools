@@ -1,6 +1,6 @@
 {
   "name": "date-tools",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Functions for comparing and counting with dates",
   "main": "dist/src/index.js",
   "scripts": {
