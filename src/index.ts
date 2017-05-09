@@ -198,7 +198,7 @@ export function timeBetween(from: Date, to: Date) {
   }
   else {
     return Duration.Days(diffDays(from, to))
-  } 
+  }
 }
 
 export function naturalDifference(from: Date, to: Date, {precision} = {precision: Precision.Days}) {
