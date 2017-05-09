@@ -254,6 +254,13 @@ describe('date', () => {
         .toEqual(makeVisible(Duration.Days(9)))
     })
 
+    it('should treat two similar dates with different times as the same date', () => {
+      expect(makeVisible(timeBetween(new Date(2000, 1, 1, 12), new Date(2000, 1, 1, 13))))
+        .toEqual(makeVisible(Duration.Days(0)))
+      expect(makeVisible(timeBetween(new Date(2000, 1, 1, 12), new Date(2000, 1, 1, 12, 23))))
+        .toEqual(makeVisible(Duration.Days(0)))
+    })
+
     it('should count the number of days between whole months dates', () => {
       expect(makeVisible(timeBetween(new Date(2000, 1, 1), new Date(2000, 2, 1))))
         .toEqual(makeVisible(Duration.Months(1)))

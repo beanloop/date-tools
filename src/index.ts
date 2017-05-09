@@ -17,7 +17,7 @@ export const Duration = Enum({
   MilliSeconds: 'number',
   Seconds: 'number',
   Minutes: 'number',
-  Hours: 'number', 
+  Hours: 'number',
   Days: 'number',
   Months: 'number',
 }) as {
