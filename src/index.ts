@@ -190,9 +190,15 @@ export function diffMonths(from: Date, to: Date) {
 export function timeBetween(from: Date, to: Date) {
   if (isEqual(from, to)) return Duration.Days(0)
 
-  return from.getDate() === to.getDate()
-    ? Duration.Months(diffMonths(from, to))
-    : Duration.Days(diffDays(from, to))
+  if (from.getMonth() === to.getMonth() && from.getDate() === to.getDate() && from.getFullYear() === to.getFullYear()) {
+    return Duration.Days(diffDays(from, to))
+  }
+  else if (from.getDate() === to.getDate()) {
+    return Duration.Months(diffMonths(from, to))
+  }
+  else {
+    return Duration.Days(diffDays(from, to))
+  }
 }
 
 export function naturalDifference(from: Date, to: Date, {precision} = {precision: Precision.Days}) {
